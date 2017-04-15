@@ -366,6 +366,8 @@ class ArgumentNode:
             self.arguments += [statement]
 
     def set_kwarg(self, name, value):
+        if name in self.kwargs:
+            raise MesonException('Keyword argument %s defined multiple times.' % name)
         self.kwargs[name] = value
 
     def num_args(self):
